@@ -1,0 +1,6 @@
+ar/com/emanuel/cyberia/domain/Registrador.class
+ar/com/emanuel/cyberia/enums/Privilegio.class
+ar/com/emanuel/App.class
+ar/com/emanuel/cyberia/domain/Usuario.class
+ar/com/emanuel/cyberia/interfaces/Registro.class
+ar/com/emanuel/cyberia/controllers/Home.class
