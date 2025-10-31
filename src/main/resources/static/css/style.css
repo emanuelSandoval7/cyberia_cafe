@@ -1,0 +1,202 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+/* =======================
+   Variables de layout
+======================= */
+:root {
+  --sidebar-w: 250px;
+  --nav-h: 64px;        /* alto visual real del navbar */
+  --bg-beige: #e8dcc4;  /* fondo navbar/sidebar/footer */
+  --bg-beige-2: #e2d3b7;
+  --text: #4b3f2f;      /* texto principal */
+  --accent: #d2b48c;    /* hover/botón primario */
+  --page: #fdfbf7;      /* fondo de la página */
+}
+
+/* =======================
+   Base
+======================= */
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--page);
+  color: var(--text);
+}
+
+/* =======================
+   App grid (sin JS)
+======================= */
+.app-grid {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  grid-template-rows: var(--nav-h) 1fr auto;
+  grid-template-areas:
+    "top top"
+    "side content"
+    "side footer";
+}
+
+/* Áreas */
+#topnav { grid-area: top; }
+#sidebar { grid-area: side; }
+#content { grid-area: content; }
+#footer { grid-area: footer; }
+
+/* =======================
+   Navbar (top)
+======================= */
+#topnav {
+  position: sticky; /* se pega arriba al scrollear */
+  top: 0;
+  z-index: 1030;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  background: var(--bg-beige) !important;
+  color: var(--text) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  padding-top: 0 !important;   /* quitar paddings BS que alteran la altura */
+  padding-bottom: 0 !important;
+}
+
+/* Links */
+#topnav .navbar-brand,
+#topnav .nav-link { color: var(--text) !important; }
+#topnav .nav-link:hover { color: var(--accent) !important; }
+
+/* Botones */
+#topnav .btn { border-radius: 8px; transition: all 0.2s ease; }
+#topnav .btn-link { color: var(--text) !important; }
+#topnav .btn-primary {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+}
+#topnav .btn-primary:hover {
+  background: #c3a97f !important;
+  border-color: #c3a97f !important;
+}
+
+/* Toggler (hamburguesa) BS4 */
+.navbar-light .navbar-toggler { border-color: rgba(75,63,47,0.30) !important; }
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(75,63,47,0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1.5em 1.5em;
+}
+
+/* Logo */
+#topnav .navbar-brand img {
+  height: 48px;      /* 48–56px luce bien dentro de 64px */
+  width: auto;
+  margin-right: 10px;
+  display: block;
+  transition: transform 0.2s ease;
+}
+#topnav .navbar-brand img:hover { transform: scale(1.05); }
+
+/* =======================
+   Sidebar (left)
+======================= */
+#sidebar {
+  position: sticky;              /* se mantiene visible al scrollear */
+  top: var(--nav-h);
+  align-self: start;
+  height: calc(100vh - var(--nav-h));
+  overflow-y: auto;
+  background: var(--bg-beige);
+  color: var(--text);
+  box-shadow: 2px 0 6px rgba(0,0,0,0.05);
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Header del sidebar */
+#sidebar .sidebar-header {
+  padding: 16px;
+  background: var(--bg-beige-2);
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  margin: 0; /* elimina posibles gaps */
+}
+
+/* Lista/links del sidebar */
+#sidebar ul.components {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+#sidebar ul li a {
+  display: block;
+  padding: 10px 14px;
+  margin: 4px 8px;
+  font-size: 0.98rem;
+  color: var(--text);
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+#sidebar ul li a:hover,
+#sidebar ul li.active > a {
+  background: var(--accent);
+  color: #fff;
+}
+#sidebar ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 34px !important;
+  background: var(--bg-beige-2);
+  border-radius: 0;
+}
+
+/* =======================
+   Content & Footer
+======================= */
+#content {
+  padding: 1.25rem 1.5rem;
+  min-height: 0; /* evita crecer innecesariamente en grid */
+}
+#footer {
+  background: var(--bg-beige);
+  color: var(--text);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+  font-size: 0.9em;
+  width: 100%;
+}
+#footer small { opacity: 0.8; transition: opacity 0.2s ease; }
+#footer small:hover { opacity: 1; }
+
+/* Tipografía general */
+p { font-size: 1em; line-height: 1.6em; color: var(--text); }
+a, a:hover, a:focus { text-decoration: none; }
+
+/* =======================
+   Responsive
+======================= */
+@media (max-width: 992px){
+  :root { --sidebar-w: 220px; --nav-h: 60px; }
+  #topnav .navbar-brand img { height: 44px; }
+}
+@media (max-width: 768px){
+  /* En móviles: el layout se apila, el sidebar se vuelve bloque arriba del contenido */
+  .app-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--nav-h) auto 1fr auto;
+    grid-template-areas:
+      "top"
+      "side"
+      "content"
+      "footer";
+  }
+  #sidebar { position: relative; top: 0; height: auto; max-height: none; }
+}
+
+
+/* ===== Fix: asegurar footer al fondo cuando no hay contenido ===== */
+.app-grid{ height: 100svh; }          /* antes: min-height */
+#content{ min-height: 1px; }          /* previene colapso de fila 1fr */
+#footer{ margin: 0; padding: .75rem 1rem; }

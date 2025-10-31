@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "USUARIOS")
@@ -22,6 +24,9 @@ public class Usuario {
 	@Column(name = "NOMBRE")
 	private String nombre;
 	
+	
+	@Email(message =  "Coloque un mail valido")
+	@Size(min = 8, max = 50, message = "Ingrese su email")
 	@Column(name = "EMAIL")
 	private String email;
 	

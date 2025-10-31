@@ -1,6 +1,11 @@
 /home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/App.java
 /home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/cyberia/controllers/Home.java
+/home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/cyberia/controllers/InicioController.java
 /home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/cyberia/domain/Registrador.java
 /home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/cyberia/domain/Usuario.java
 /home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/cyberia/enums/Privilegio.java
+/home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/cyberia/forms/UserForm.java
 /home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/cyberia/interfaces/Registro.java
+/home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/cyberia/repositorios/UserRepository.java
+/home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/cyberia/servicios/UserService.java
+/home/emanuel/eclipse-workspace/app/src/main/java/ar/com/emanuel/cyberia/servicios/UserServiceImp.java

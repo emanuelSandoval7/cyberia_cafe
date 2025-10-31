@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+  <nav th:fragment="sidebar" id="sidebar">
+    
+    <!-- Encabezado del sidebar -->
+    <div class="sidebar-header p-3 text-center">
+      <h3>Bienvenido</h3>
+    </div>
+
+    <!-- Contenido -->
+    <ul class="list-unstyled components px-3">
+      <p class="text-muted small mb-2">Navigation</p>
+
+      <li class="active">
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          Home
+        </a>
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+          <li><a href="#">Home 1</a></li>
+          <li><a href="#">Home 2</a></li>
+          <li><a href="#">Home 3</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">About</a></li>
+
+      <li>
+        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          Pages
+        </a>
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+          <li><a href="#">Page 1</a></li>
+          <li><a href="#">Page 2</a></li>
+          <li><a href="#">Page 3</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">Portfolio</a></li>
+      <li><a th:href="@{/adm/users}">Admin</a></li>
+    </ul>
+
+  </nav>
+</html>
