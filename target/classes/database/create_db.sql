@@ -1,7 +1,22 @@
-create table USUARIOS(
-	ID bigint not null AUTO_INCREMENT,
-	NOMBRE varchar(30) not null,
-	EMAIL varchar(30) not null,
-	PASSWORD varchar(30) not null,
-	PRIMARY KEY(ID)
-);
+CREATE TABLE IF NOT EXISTS usuarios (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS permisos (
+	id BIGINT NOT NULL,
+	nombre VARCHAR(25) NOT NULL,
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS permisos_usuarios (
+	permiso_id BIGINT NOT NULL,
+	usuario_id BIGINT NOT NULL,
+	PRIMARY KEY (permiso_id, usuario_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+	
+ALTER TABLE permisos_usuarios ADD CONSTRAINT pusr$per FOREIGN KEY (permiso_id) REFERENCES permisos(id);
+
+ALTER TABLE permisos_usuarios ADD CONSTRAINT pusr$usr FOREIGN KEY (usuario_id) REFERENCES usuarios(id);

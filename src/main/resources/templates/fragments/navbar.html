@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!DOCTYPE html SYSTEM "http://thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
   <nav th:fragment="navbar" id="topnav" class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
@@ -20,14 +21,14 @@
       <div class="collapse navbar-collapse" id="navbarButtonsExample">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
+            <a class="nav-link" href="#" th:text="#{nvar.about}"></a>
           </li>
         </ul>
 
         <div class="form-inline my-2 my-lg-0">
-          <a class="btn btn-link mr-2" href="#">Login</a>
-          <a class="btn btn-primary mr-2" href="#">Sign up for free</a>
-          <a class="btn btn-dark" href="https://github.com/" role="button">
+          <a class="btn btn-link mr-2" th:href="@{/login}" th:text="#{nvar.login}"></a>
+          <a class="btn btn-primary mr-2" href="#" th:text="#{nvar.info}"></a>
+          <a class="btn btn-dark" th:text="#{nvar.web}" href="https://github.com/" role="button">
             <i class="fab fa-github"></i>
           </a>
         </div>

@@ -1,44 +1,33 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!DOCTYPE html SYSTEM "http://thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
   <nav th:fragment="sidebar" id="sidebar">
     
     <!-- Encabezado del sidebar -->
     <div class="sidebar-header p-3 text-center">
-      <h3>Bienvenido</h3>
+      <h3 th:text="#{sbar.msg}" sec:authentication="principal"></h3>
     </div>
 
     <!-- Contenido -->
     <ul class="list-unstyled components px-3">
-      <p class="text-muted small mb-2">Navigation</p>
+      <p class="text-muted small mb-2" th:text="#{sbar.home}"></p>
 
       <li class="active">
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-          Home
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" th:text="#{sbar.opt}">
         </a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li><a href="#">Home 1</a></li>
-          <li><a href="#">Home 2</a></li>
-          <li><a href="#">Home 3</a></li>
+        <ul sec:authorize="hasAnyRole('ROLE_ADMINISTRADOR', 'ROLE_USUARIO')" class="collapse list-unstyled" id="homeSubmenu">
+          <li><a href="#" th:text="#{sbar.opt1}"></a></li>
+          <li><a href="#" th:text="#{sbar.opt2}"></a></li>
+          <li><a href="#" th:text="#{sbar.opt3}"></a></li>
         </ul>
       </li>
 
-      <li><a href="#">About</a></li>
+      <li><a href="#" th:text="#{sbar.prod}"></a></li>
 
-      <li>
-        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-          Pages
-        </a>
-        <ul class="collapse list-unstyled" id="pageSubmenu">
-          <li><a href="#">Page 1</a></li>
-          <li><a href="#">Page 2</a></li>
-          <li><a href="#">Page 3</a></li>
-        </ul>
-      </li>
-
-      <li><a href="#">Portfolio</a></li>
-      <li><a th:href="@{/adm/users}">Admin</a></li>
+      <li sec:authorize="hasRole('ROLE_ADMINISTRADOR')"><a th:href="@{/adm/users}" th:text="#{sbar.conf}"></a></li>
     </ul>
 
   </nav>

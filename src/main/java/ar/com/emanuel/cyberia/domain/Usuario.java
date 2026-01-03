@@ -1,58 +1,79 @@
 package ar.com.emanuel.cyberia.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import ar.com.emanuel.cyberia.enums.Privilegio;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import ar.com.emanuel.cyberia.enums.Permiso;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "USUARIOS")
+@Table(name = "usuarios")
 
 public class Usuario {
 	@Id
-	@Column(name = "ID")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "NOMBRE")
-	private String nombre;
-	
-	
-	@Email(message =  "Coloque un mail valido")
-	@Size(min = 8, max = 50, message = "Ingrese su email")
-	@Column(name = "EMAIL")
+	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "PASSWORD")
-	private String password;
 	
-	private List<Privilegio> privilegios;
+	@Enumerated(EnumType.ORDINAL)
+	@ElementCollection(targetClass = Permiso.class)
+	@CollectionTable(name = "permisos_usuarios", joinColumns = @JoinColumn(name = "usuario_id"))
+	@Column(name = "permiso_id")
+	private List<Permiso> permisos;
 	
+	/* Hibernate*/
+	Usuario() {
+		
+	}
 	
+	public void convertirEnAdministrador() {
+		this.permisos.add(Permiso.ADMINISTRADOR);
+	}
+	
+	public List<GrantedAuthority> collectAuthorities(){
+		List<GrantedAuthority> credentials = new ArrayList<GrantedAuthority>();
+		
+		for (Permiso permiso : this.permisos) {
+			credentials.add(new SimpleGrantedAuthority(permiso.securityName()));
+		}
+		
+		return credentials;
+	}
 
-public Usuario(String nombre, String email, String password, List<Privilegio> privilegios) {
-	this.nombre = nombre;
+	public Usuario(String email) {
 	this.email = email;
-	this.password = password;
-	this.privilegios = privilegios;
-}
-
-public String getNombre() {
-	return nombre;
-}
-public String getEmail() {
+	}
+	
+	public Long getId() {
+	return id;
+	}
+	
+	public String getEmail() {
 	return email;
-}
-public List<Privilegio> getPrivilegios() {
-	return privilegios;
-}
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+		this.permisos = new ArrayList<Permiso>();
+		this.permisos.add(Permiso.USUARIO);
+	}
 
 
 }

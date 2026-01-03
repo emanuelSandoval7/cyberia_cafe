@@ -11,7 +11,7 @@ public class Home {
 
   @GetMapping("/")
   public String home() {
-      return "home";
+	  return "redirect:" + "login";
   }
 }
   

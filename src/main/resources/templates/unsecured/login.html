@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{single-layout}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div layout:fragment="content">
+	<form id="LoginFrm" th:object="${loginform}" th:action="@{/signIn}" method="post">
+
+	<div class="login-form-group">
+		<label for="email">Email</label>
+		<input  type="email"
+				id="email"
+				name="email"
+				placeholder="ejemplo@correo.com"
+				required />
+	</div>
+
+	<div class="login-form-group">
+		<label for="password">Contraseña</label>
+		<input  type="password"
+				id="password"
+				name="password"
+				placeholder="••••••••"
+				required />
+	</div> 
+
+	<div class="login-form-footer">
+		<button type="submit" class="login-btn-primary"> Entrar </button>
+		<a href="#" class="login-link-muted">¿Olvidaste tu contraseña?</a>
+	</div>
+	</form>
+
+
+ </html>

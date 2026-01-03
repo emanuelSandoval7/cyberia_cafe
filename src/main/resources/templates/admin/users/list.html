@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<!DOCTYPE html SYSTEM "http://thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
   
 	  <body>
 		 <div layout:fragment="content">
-			<a th:href="@{/adm/users/edit}" th:text="#{user.create.btn}"></a>
+			
+			<div class="content-container">
+			    <h1 class="title" th:text="#{adm.panel}"></h1>
+				<a th:href="@{/adm/users/edit}" th:text="#{adm.create.btn}"></a>
+
+			    <table class="hover-table">
+			        <thead>
+			            <tr>
+			                <th th:text="#{adm.col1}"></th>
+							<th th:text="#{adm.col2}"></th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr th:each="user : ${listado}">
+			                <td th:text="${user.email}"></td>
+							<td>
+								<a th:href="@{/adm/users/edit?id=}" th:text="#{adm.edit.btn}"></a>
+
+			            </tr>
+			        </tbody>
+			    </table>
+			</div>
 		</div>
 	  </body>
  </html>

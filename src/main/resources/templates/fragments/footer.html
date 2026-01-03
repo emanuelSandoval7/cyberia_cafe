@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<!DOCTYPE html SYSTEM "http://thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	  
 <footer th:fragment="footer" id="footer" class="text-center py-3">
   <div class="container">
-    <small>© 2025 Cyberia Café — All rights reserved · Privacy · Terms</small>
+    <small th:text="#{fter.rights}"></small>
   </div>
 </footer>
 

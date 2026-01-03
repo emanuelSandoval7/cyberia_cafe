@@ -1,13 +1,43 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<!DOCTYPE html SYSTEM "http://thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
   
 	  <body>
-		 <div layout:fragment="content">
-			
-			<form id="userFrm" th:object="${form}" th:action="@{/adm/users/save}" method="post">
-				<input id="email" th:field="*{email}" />
-				<button id="createBtn" type="submit" th:text="#{save.btn}"></button>
-		</div>
-	  </body>
- </html>
+	     <div layout:fragment="content">
+	       <div class="container-fluid px-0 px-md-3">
+	         <div class="form-card card shadow-sm border-0">
+	           <div class="card-header d-flex align-items-center justify-content-between">
+	             <div class="d-flex align-items-center gap-2">
+	               <img src="/images/logo.png" alt="logo" style="height:28px;">
+				   <h6 class="mb-0" th:text="${form.id} != null ? 'Editar usuario' : 'Crear usuario'"></h6>
+				 </div>
+			   </div>
+			   
+			   <div class="card-body">
+			               <!-- El objeto de binding se define acá y TODO input con th:field va adentro -->
+			               <form id="userFrm" th:object="${form}" th:action="@{/adm/users/save}" method="post">
+			                 <div class="form-row">
+			                   <div class="form-group col-md-6">
+			                     <label for="email" th:text="#{adm.email}"></label>
+			                     <input id="email" name="email" type="email" th:classappend="'form-control' + ${#fields.hasErrors('email') ? 'is-invalid' : ''}" th:field="*{email}" >
+								 <div id="email-err" class="feedback invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+			                   </div>
+			                 </div>
+
+			                 <!-- Hidden ID adentro del form para que exista el objeto -->
+			                 <input id="id" name="id" type="hidden" th:field="*{id}"/>
+
+			                 <div class="d-flex justify-content-end gap-2 mt-3">
+			                   <button id="createBtn" type="submit" class="btn btn-primary" th:text="#{adm.save.btn}"></button>
+			                   <button id="cancelBtn" type="button" class="btn btn-light" onclick="$('#cancelFrm').submit();" th:text="#{adm.cancel.btn}"></button>
+			                 </div>
+			               </form>
+						   
+						   <form id="cancelFrm" th:action="@{/adm/users}" method="get"></form>
+			             </div>
+			           </div>
+			         </div>
+			       </div>
+			     </body>
+			   </html>
